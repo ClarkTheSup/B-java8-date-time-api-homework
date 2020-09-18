@@ -1,6 +1,8 @@
 package com.thoughtworks.capability.gtb;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
 
 /**
  * 计算任意日期与下一个劳动节相差多少天
@@ -11,6 +13,10 @@ import java.time.LocalDate;
 public class Practice1 {
 
   public static long getDaysBetweenNextLaborDay(LocalDate date) {
-    return 0;
+    LocalDate nextLaborDay = LocalDate.of(date.getYear(), 5, 1);
+    if (date.isAfter(nextLaborDay)) {
+      nextLaborDay = nextLaborDay.plusYears(1L);
+    }
+    return nextLaborDay.toEpochDay() - date.toEpochDay();
   }
 }
